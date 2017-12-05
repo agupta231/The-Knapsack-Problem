@@ -1,8 +1,7 @@
-from enum import Enum
+from enum import Enum 
 
-class item_array(Enum):
-    WEIGHT = 0
-    VALUE = 1
+# items array format:
+# [[weight1, value1], [weight2, value2] ... [weightn, valuen]]
 
 def exhaustive(items, capacity):
     possibleSolutions = 2 ** len(items)
@@ -29,7 +28,7 @@ def exhaustive(items, capacity):
     print(optimal_items)
 
 
-def dynamic(): 
+def dynamic(items, capacity): 
     pass
 
 
