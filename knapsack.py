@@ -29,7 +29,8 @@ def exhaustive(items, capacity):
 
 
 def dynamic(items, capacity): 
-    pass
+    memoization_table = []
+
 
 
 init_items_arr = [[3, 25],
@@ -39,3 +40,4 @@ init_items_arr = [[3, 25],
                   [5, 50]]
 
 exhaustive(init_items_arr, 6)
+dynamic(init_items_arr, 6)
