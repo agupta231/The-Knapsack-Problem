@@ -13,17 +13,20 @@ def exhaustive(items, capacity):
     for i in range(possibleSolutions):
         decision_matrix = [int(d) for d in str(bin(i)[2:]).zfill(len(items))]
 
-        # current_weight = -1
-        # current_value = -1 
-        # 
-        # for j in range(len(decision_matrix)):
-        #     if decision_matrix[j] == 1:
-        #         current_weight += items[i][0]
-        #         current_value += items[i][1]
+        current_weight = -1
+        current_value = -1 
+        
+        for j in range(len(decision_matrix)):
+            if decision_matrix[j] == 1:
+                current_weight += items[j][0]
+                current_value += items[j][1]
 
-        # if current_weight <= capacity and current_value > max_value:
-        #     max_value = current_value
-        #     optimal_items = decision_matrix
+        if current_weight <= capacity and current_value > max_value:
+            max_value = current_value
+            optimal_items = decision_matrix
+
+    print(max_value)
+    print(optimal_items)
 
 
 def dynamic(): 
