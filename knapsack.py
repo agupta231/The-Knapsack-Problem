@@ -30,7 +30,6 @@ def exhaustive(items, capacity):
 
 def dynamic(items, capacity): 
     memoization_table = [[0 for i in range(capacity + 1)] for j in range(len(items) + 1)]
-    keep_table = [[0 for i in range(capacity + 1)] for j in range(len(items) + 1)]
 
     for i in range(1, len(items) + 1):
         current_item = i - 1
@@ -39,11 +38,8 @@ def dynamic(items, capacity):
             if j - items[current_item][0] >= 0:
                 if items[current_item][1] + memoization_table[i - 1][j - items[current_item][0]] > memoization_table[i - 1][j]:
                     memoization_table[i][j] = items[current_item][1] + memoization_table[i - 1][j - items[current_item][0]]
-                    keep_table[i][j] = 1
                 else:
                     memoization_table[i][j] = memoization_table[i - 1][j]
-
-                # memoization_table[i][j] = max(memoization_table[i - 1][j], items[current_item][1] + memoization_table[i - 1][j - items[current_item][0]])
 
             else:
                 memoization_table[i][j] = memoization_table[i - 1][j]
@@ -59,13 +55,8 @@ def dynamic(items, capacity):
 
         i -= 1
 
-    for row in memoization_table:
-        print(row) 
-
-    for row in keep_table:
-        print(row)
-
     print(optimal_items)
+
 
 init_items_arr = [[3, 25],
                   [2, 20],
