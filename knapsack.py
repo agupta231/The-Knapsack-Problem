@@ -93,7 +93,32 @@ def UI():
                 if fn == "":
                     fn = "input-1.txt" 
 
-                fh = open(fn, "r")
+                capacity = None
+                weight_arr = None
+                value_arr = None
+                items_arr = []
+
+
+                with open(fn, "r") as fh:
+                    line_count = 0
+
+                    for line in fh:
+                        if line_count == 0:
+                           capacity = int(line)
+                        elif line_count == 1:
+                            weight_arr = line.split(",")
+                        elif line_count == 2:
+                            value_arr = line.split(",")
+
+                        line_count += 1
+
+                for i in range(len(weight_arr)):
+                    items_arr.append([int(weight_arr[i]), int(value_arr[i])])
+
+                print(capacity)
+                print(items_arr)
+                program_active = False
+
             except IOError:
                 print("Error: file not found")
 
@@ -112,6 +137,8 @@ init_items_arr = [[3, 25],
                   [4, 40],
                   [5, 50]]
 
-exhaustive(init_items_arr, 6)
-dynamic(init_items_arr, 6)
-greedy(init_items_arr, 6)
+# exhaustive(init_items_arr, 6)
+# dynamic(init_items_arr, 6)
+# greedy(init_items_arr, 6)
+
+UI()
