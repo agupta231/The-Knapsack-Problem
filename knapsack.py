@@ -12,8 +12,8 @@ def exhaustive(items, capacity):
     for i in range(possibleSolutions):
         decision_matrix = [int(d) for d in str(bin(i)[2:]).zfill(len(items))]
 
-        current_weight = -1
-        current_value = -1 
+        current_weight = 0 
+        current_value = 0 
         
         for j in range(len(decision_matrix)):
             if decision_matrix[j] == 1:
