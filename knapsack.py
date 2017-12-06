@@ -80,6 +80,32 @@ def greedy(items, capacity):
     print(optimal_items)
 
 
+def UI():
+    program_active = True
+
+    while program_active:
+        user_choice = input("Would you like to (l)oad a file or (q)uit?")
+        
+        if user_choice == "l":
+            try:
+                fn = input("Input the name of the input file (default=input-1.txt): ")
+
+                if fn == "":
+                    fn = "input-1.txt" 
+
+                fh = open(fn, "r")
+            except IOError:
+                print("Error: file not found")
+
+        elif user_choice == "q":
+            print("Oki, doki. Have a great day!")
+            program_active = False
+            break
+
+        else:
+            print("Choice not recognized: Please enter either 'l' or 'q'")
+
+
 init_items_arr = [[3, 25],
                   [2, 20],
                   [1, 15],
