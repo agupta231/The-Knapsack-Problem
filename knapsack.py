@@ -113,9 +113,6 @@ def UI():
                 for i in range(len(weight_arr)):
                     items_arr.append([int(weight_arr[i]), int(value_arr[i])])
 
-                print(capacity)
-                print(items_arr)
-
                 e_result = exhaustive(items_arr, capacity)
                 d_result = dynamic(items_arr, capacity)
                 g_result = greedy(items_arr, capacity)
