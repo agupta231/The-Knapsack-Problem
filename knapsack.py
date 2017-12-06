@@ -24,8 +24,7 @@ def exhaustive(items, capacity):
             max_value = current_value
             optimal_items = decision_matrix
 
-    print(max_value)
-    print(optimal_items)
+    return optimal_items
 
 
 def dynamic(items, capacity): 
@@ -55,7 +54,7 @@ def dynamic(items, capacity):
 
         i -= 1
 
-    print(optimal_items)
+    return optimal_items
 
 
 def greedy(items, capacity):
@@ -77,7 +76,7 @@ def greedy(items, capacity):
 
         i-= 1
 
-    print(optimal_items)
+    return optimal_items
 
 
 def UI():
@@ -98,7 +97,6 @@ def UI():
                 value_arr = None
                 items_arr = []
 
-
                 with open(fn, "r") as fh:
                     line_count = 0
 
@@ -117,6 +115,22 @@ def UI():
 
                 print(capacity)
                 print(items_arr)
+
+                e_result = exhaustive(items_arr, capacity)
+                d_result = dynamic(items_arr, capacity)
+                g_result = greedy(items_arr, capacity)
+
+                e_sol = decision_to_subset(items_arr, e_result)
+                d_sol = decision_to_subset(items_arr, d_result)
+                g_sol = decision_to_subset(items_arr, g_result)
+
+                print("Exhaustive search solution:     " + str(e_sol[0]) + 
+                        " optimal subset: " + str(e_sol[1]))
+                print("Dynamic search solution:        " + str(d_sol[0]) + 
+                        " optimal subset: " + str(d_sol[1]))
+                print("Chosen(greedy) search solution: " + str(g_sol[0]) + 
+                        " optimal subset: " + str(g_sol[1]))
+
                 program_active = False
 
             except IOError:
@@ -131,14 +145,15 @@ def UI():
             print("Choice not recognized: Please enter either 'l' or 'q'")
 
 
-init_items_arr = [[3, 25],
-                  [2, 20],
-                  [1, 15],
-                  [4, 40],
-                  [5, 50]]
+def decision_to_subset(items, decision):
+    subset = []
+    solution = 0
+    
+    for i in range(len(decision)):
+        if decision[i] == 1:
+            subset.append(items[i])
+            solution += items[i][1]
 
-# exhaustive(init_items_arr, 6)
-# dynamic(init_items_arr, 6)
-# greedy(init_items_arr, 6)
+    return (solution, subset)
 
 UI()
