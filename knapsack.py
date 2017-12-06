@@ -58,6 +58,32 @@ def dynamic(items, capacity):
     print(optimal_items)
 
 
+def greedy(items, capacity):
+    complete_array = []
+    
+    for i in range(len(items)):
+        complete_array.append([i, items[i][0], items[i][1], items[i][1] / items[i][0]])
+    
+    complete_array = sorted(complete_array, key=lambda x: x[3])
+    print(complete_array)
+
+    remaining_space = capacity
+    optimal_items = [0 for x in range(len(items))]
+    i = len(complete_array) - 1
+
+    while remaining_space > 0 and i >= 0:
+        print(complete_array[i][0])
+        if remaining_space - complete_array[i][1] >= 0:
+            print("here")
+            optimal_items[complete_array[i][0]] = 1
+            remaining_space -= complete_array[i][1]
+
+            print(remaining_space)
+
+        i-= 1
+
+    print(optimal_items)
+
 init_items_arr = [[3, 25],
                   [2, 20],
                   [1, 15],
@@ -66,3 +92,4 @@ init_items_arr = [[3, 25],
 
 exhaustive(init_items_arr, 6)
 dynamic(init_items_arr, 6)
+greedy(init_items_arr, 6)
